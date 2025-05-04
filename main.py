@@ -15,22 +15,22 @@ def main ():
 
     # infinite game loop
     while running:
-        # poll for events
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+        screen.fill("black")
+
+        # draw player
+        player_1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        player_1.draw(screen)
+        
+
+        pygame.display.flip()
+
+        clock.tick(60)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            return
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("black")
 
-    # draw player
-    player_1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    player_1.draw(screen)
-    
-
-    pygame.display.flip()
-
-    clock.tick(60)
 
 if __name__ == "__main__":
     main()
