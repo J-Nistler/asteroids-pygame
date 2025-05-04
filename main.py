@@ -1,6 +1,6 @@
 import pygame
 from constants import *
-
+from player import *
 
 
 def main ():
@@ -23,8 +23,14 @@ def main ():
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
 
+    # draw player
+    player_1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player_1.draw(screen)
+    
+
     pygame.display.flip()
-    dt = clock.tick(60) / 1000
+
+    clock.tick(60)
 
 if __name__ == "__main__":
     main()
