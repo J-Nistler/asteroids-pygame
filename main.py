@@ -13,21 +13,23 @@ def main ():
     running = True
     dt = 0
 
+    player_1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     # infinite game loop
     while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            
+
         screen.fill("black")
 
         # draw player
-        player_1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        player_1.update(dt)
         player_1.draw(screen)
-        
-
         pygame.display.flip()
 
-        clock.tick(60)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            return
+        # limit the framerate to 60 FPS
+        dt = clock.tick(60) / 1000
 
     # fill the screen with a color to wipe away anything from last frame
 
