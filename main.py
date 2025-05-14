@@ -3,6 +3,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+from bullet import *
 
 
 def main ():
@@ -18,6 +19,7 @@ def main ():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    bullets = pygame.sprite.Group()
 
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
@@ -41,10 +43,16 @@ def main ():
             item.draw(screen)
         pygame.display.flip()
 
+        # colision detection
+        for asteroid in asteroids:
+            if player_1.collision_check(asteroid):
+                print("Game Over!")
+                pygame.quit()
+
+
         # limit the framerate to 60 FPS
         dt = clock.tick(60) / 1000
-
-    # fill the screen with a color to wipe away anything from last frame
+    pygame.quit()
 
 
 if __name__ == "__main__":
