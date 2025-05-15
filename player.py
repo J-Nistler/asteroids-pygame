@@ -43,3 +43,4 @@ class Player (CircleShape):
     def shoot(self):
          bullet = Bullet(self.position, SHOT_RADIUS)
          bullet.velocity = pygame.Vector2(0, 1)
+         
