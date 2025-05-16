@@ -1,10 +1,10 @@
+import sys
 import pygame
 from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
 from shot import *
-
 
 def main ():
     pygame.init()
@@ -33,7 +33,7 @@ def main ():
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
+                return
             
 
         screen.fill("black")
@@ -48,8 +48,11 @@ def main ():
         for asteroid in asteroids:
             if player_1.collision_check(asteroid):
                 print("Game Over!")
-                pygame.quit()
-
+                sys.exit()
+            for shot in shots:
+                if shot.collision_check(asteroid):
+                    shot.kill()
+                    asteroid.kill()
 
         # limit the framerate to 60 FPS
         dt = clock.tick(60) / 1000
